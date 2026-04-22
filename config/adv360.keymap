@@ -7,20 +7,119 @@
 #include <dt-bindings/zmk/pointing.h>
 
 / {
-    behaviors {
-      #include "macros.dtsi"
-      #include "version.dtsi"
+  behaviors {
+    #include "macros.dtsi"
+    #include "version.dtsi"
+    #include "JIS.dtsi"
 
-      hm: homerow_mods {
-          compatible = "zmk,behavior-hold-tap";
-          label = "HOMEROW_MODS";
-          #binding-cells = <2>;
-          tapping-term-ms = <200>;
-          quick_tap_ms = <175>;
-          flavor = "tap-preferred";
-          bindings = <&kp>, <&kp>;
-      };
+    hm: homerow_mods {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_MODS";
+        #binding-cells = <2>;
+        tapping-term-ms = <200>;
+        quick_tap_ms = <175>;
+        flavor = "tap-preferred";
+        bindings = <&kp>, <&kp>;
     };
+    eqj: us_equal_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_EQUAL_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp JIS_EQUAL>, <&kp JIS_PLUS>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    n2j: us_number_2_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_NUMBER_2_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp NUMBER_2>, <&kp JIS_AT>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    n6j: us_number_6_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_NUMBER_6_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp NUMBER_6>, <&kp JIS_CARET>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    n7j: us_number_7_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_NUMBER_7_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp NUMBER_7>, <&kp JIS_AMPERSAND>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    n8j: us_number_8_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_NUMBER_8_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp NUMBER_8>, <&kp JIS_ASTERISK>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    n9j: us_number_9_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_NUMBER_9_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp NUMBER_9>, <&kp JIS_LEFT_PARENTHESIS>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    n0j: us_number_0_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_NUMBER_0_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp NUMBER_0>, <&kp JIS_RIGHT_PARENTHESIS>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    minusj: us_minus_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_MINUS_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp MINUS>, <&kp JIS_UNDERSCORE>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    bslhj: us_backslash_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_BACKSLASH_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp JIS_YEN>, <&kp JIS_PIPE>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    semij: us_semicolon_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_SEMICOLON_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp SEMICOLON>, <&kp JIS_COLON>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    sqtj: us_single_quote_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_SINGLE_QUOTE_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp JIS_QUOTE>, <&kp JIS_DOUBLE_QUOTES>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    gravej: us_grave_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_GRAVE_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp JIS_BACKQUOTE>, <&kp JIS_TILDE>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    lbktj: us_left_bracket_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_LEFT_BRACKET_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp JIS_LEFT_BRACKET>, <&kp JIS_LEFT_BRACE>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    rbktj: us_right_bracket_on_jis {
+        compatible = "zmk,behavior-mod-morph";
+        label = "US_RIGHT_BRACKET_ON_JIS";
+        #binding-cells = <0>;
+        bindings = <&kp JIS_RIGHT_BRACKET>, <&kp JIS_RIGHT_BRACE>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+  };
 
   keymap {
     compatible = "zmk,keymap";
@@ -28,11 +127,11 @@
     default_layer {
       display-name = "Base";
       bindings = <
-        &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &tog 1                                                           &mo 3 &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
-        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp U  &kp I     &kp O    &kp P    &kp BSLH
-        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp J  &kp K     &kp L    &kp SEMI &kp SQT
+        &eqj      &kp N1    &n2j     &kp N3   &kp N4     &kp N5 &tog 1                                                           &mo 3 &n6j   &n7j   &n8j      &n9j     &n0j     &minusj
+        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp U  &kp I     &kp O    &kp P    &bslhj
+        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp J  &kp K     &kp L    &semij   &sqtj
         &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp M  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp SPACE              &kp UP &kp DOWN  &kp LBKT &kp RBKT &mo 2
+        &mo 2     &gravej   &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp SPACE              &kp UP &kp DOWN  &lbktj   &rbktj   &mo 2
       >;
     };
     keypad {
